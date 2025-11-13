@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BluePoint Logistics — Employment Application</title>
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F2F4F7;
+    color: #0A2540;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #0A2540;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 26px;
+    letter-spacing: 0.5px;
+  }
+
+  .container {
+    max-width: 700px;
+    background: white;
+    padding: 40px;
+    margin: 50px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-top: 15px;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #FAFAFA;
+  }
+
+  textarea { resize: vertical; }
+
+  button {
+    background-color: #0057A0;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 25px;
+    width: 100%;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #003F75;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    padding: 20px;
+  }
+
+  footer a {
+    color: #0057A0;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>BluePoint Logistics Careers</h1>
+  <p>Employment Application Form</p>
+</header>
+
+<div class="container">
+  <form id="jobForm">
+    <label>Full Name *</label>
+    <input type="text" name="fullName" required>
+
+    <label>Email *</label>
+    <input type="email" name="email" required>
+
+    <label>Phone *</label>
+    <input type="text" name="phone" required>
+
+    <label>Position Applied For *</label>
+    <input type="text" name="position" required>
+
+    <label>Languages Spoken *</label>
+    <input type="text" name="languages" placeholder="English, Spanish, etc.">
+
+    <label>Computer Skills / Certifications</label>
+    <textarea name="skills" rows="3"></textarea>
+
+    <label>Professional References</label>
+    <textarea name="references" rows="3"></textarea>
+
+    <label>Do you agree with the authorization statement?</label>
+    <select name="agree" required>
+      <option value="">Select one</option>
+      <option value="Yes">Yes, I agree</option>
+      <option value="No">No, I do not agree</option>
+    </select>
+
+    <label>Signature (electronic)</label>
+    <input type="text" name="signature" placeholder="Type your full name">
+
+    <label>Date</label>
+    <input type="date" name="date">
+
+    <button type="submit">Submit Application</button>
+  </form>
+</div>
+
+<footer>
+  © 2025 BluePoint Logistics — <a href="#">www.bluepointlogistics.com</a>
+</footer>
+
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyCM8vEA4-Hy_gbNehdHTzutmi0Ov9TV6m9Tvoov6rlwke21kcd9BQQ6jzOy5LL0IRx/exec";
+  const form = document.getElementById("jobForm");
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(form).entries());
+
+    fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(formData)
+    })
+    .then(() => {
+      alert("✅ Application submitted successfully!");
+      form.reset();
+    })
+    .catch(err => alert("❌ Error submitting form: " + err.message));
+  });
+</script>
+
+</body>
+</html>
