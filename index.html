@@ -54,7 +54,7 @@
   textarea { resize: vertical; }
 
   button {
-    background-color: #0057A0;
+    background-color: #0A2540;
     color: white;
     border: none;
     padding: 14px 20px;
@@ -144,17 +144,21 @@
 
   form.addEventListener("submit", e => {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(form).entries());
-
     fetch(scriptURL, {
       method: "POST",
-      body: JSON.stringify(formData)
+      body: new FormData(form),
     })
-    .then(() => {
-      alert("✅ Application submitted successfully!");
-      form.reset();
+    .then(response => {
+      if (response.ok) {
+        alert("✅ Application submitted successfully!");
+        form.reset();
+      } else {
+        alert("❌ Error submitting form. Please try again.");
+      }
     })
-    .catch(err => alert("❌ Error submitting form: " + err.message));
+    .catch(error => {
+      alert("⚠️ Connection error: " + error.message);
+    });
   });
 </script>
 
